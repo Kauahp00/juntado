@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interagir com Scratch</title>
+</head>
+<body>
+    <h1>Dados do Projeto Scratch</h1>
+    <div id="project-data"></div>
+    
+    <script>
+       const puppeteer = require('puppeteer');
+
+(async () => {
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.goto('https://scratch.mit.edu/projects/PROJECT_ID'); // Substitua PROJECT_ID pelo ID do projeto
+
+    // Exemplo de extração de dados
+    const pontuacao = await page.evaluate(() => {
+        // Suponha que a pontuação esteja visível em um elemento específico
+        return document.querySelector('.pontuacao').innerText; // Ajuste o seletor conforme necessário
+    });
+
+    console.log(`Pontuação: ${pontuacao}`);
+
+    await browser.close();
+})();
+
+    </script>
+
+
+<iframe src="https://scratch.mit.edu/projects/416757668/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" allowfullscreen></iframe>
+</body>
+</html>
